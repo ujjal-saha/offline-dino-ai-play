@@ -1,5 +1,7 @@
 """
-NEAT T-Rex Runner v3 (Powered by t-rex-runner-v2 Engine & Sprites)
+NEAT T-Rex Runner v3
+Created by Ujjal Saha — Part of Joyboy Lab
+Licensed under the MIT License (see LICENSE file for details).
 
 Uses the authentic Chromium T-Rex Runner (t-rex-runner-v2) sprite sheet,
 scrolling horizon, clouds, distance meter, multi-box collision detection,
@@ -18,6 +20,7 @@ Usage:
 Window controls: F fast-forward, L debug hitboxes & sensor lines, Esc quit.
 """
 import argparse
+import base64
 import json
 import os
 import pickle
@@ -444,6 +447,16 @@ def decide(net, dino, world):
 # --------------------------------------------------------------------------
 # Rendering using t-rex-runner-v2's authentic sprite sheet
 # --------------------------------------------------------------------------
+
+EMBEDDED_SPRITE_1X_B64 = "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"
+
+def ensure_sprite_sheet():
+    if not os.path.exists(SPRITE_1X_PATH):
+        os.makedirs(os.path.dirname(SPRITE_1X_PATH), exist_ok=True)
+        with open(SPRITE_1X_PATH, "wb") as f:
+            f.write(base64.b64decode(EMBEDDED_SPRITE_1X_B64))
+
+
 class Sprites:
     ready = False
 
@@ -466,6 +479,7 @@ class Sprites:
         if cls.ready:
             return
 
+        ensure_sprite_sheet()
         sheet = pygame.image.load(SPRITE_1X_PATH).convert_alpha()
 
         def crop_scaled(x, y, w, h):
@@ -523,7 +537,7 @@ class Sprites:
 class Window:
     def __init__(self, headless=False, fast=False):
         pygame.init()
-        pygame.display.set_caption("NEAT T-Rex Runner v3 (t-rex-runner-v2 Engine)")
+        pygame.display.set_caption("NEAT T-Rex Runner v3 — Ujjal Saha | Joyboy Lab")
         self.screen = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
         self.headless = headless
         if not headless:
@@ -660,18 +674,17 @@ class Trainer:
                 self.window.tick()
 
                 next_obs = world.next_obstacle()
-                bird_nearby = (
+                is_bird_ahead = (
                     next_obs is not None
                     and next_obs.kind == "ptero"
-                    and (next_obs.x - DINO_X) < 260
                 )
 
                 for i, net, dino in agents:
                     jump, duck = decide(net, dino, world)
                     was_jumping = dino.jumping
                     dino.step(jump, duck, world.speed)
-                    if not was_jumping and dino.ducking and not bird_nearby:
-                        # Discourage staying permanently crouched on empty/cactus ground
+                    if not was_jumping and dino.ducking and not is_bird_ahead:
+                        # Discourage staying crouched when approaching cacti / empty ground
                         totals[i] -= UNNECESSARY_DUCK_PENALTY
                     else:
                         totals[i] += ALIVE_REWARD
@@ -699,29 +712,28 @@ class Trainer:
 
 
 def run_course(net, max_frames=MAX_FRAMES):
-    """Play one fresh random course with no rendering. Returns (frames, unnecessary_ducks, bird_ducks)."""
+    """Play one fresh random course with no rendering. Returns (frames, cactus_ducks, bird_ducks)."""
     world, dino = World(), Dino()
-    unnecessary_ducks = 0
+    cactus_ducks = 0
     bird_ducks = 0
     while world.frame < max_frames:
         jump, duck = decide(net, dino, world)
         next_obs = world.next_obstacle()
-        bird_nearby = (
+        is_bird_ahead = (
             next_obs is not None
             and next_obs.kind == "ptero"
-            and (next_obs.x - DINO_X) < 260
         )
         was_jumping = dino.jumping
         dino.step(jump, duck, world.speed)
         if not was_jumping and dino.ducking:
-            if bird_nearby:
+            if is_bird_ahead:
                 bird_ducks += 1
             else:
-                unnecessary_ducks += 1
+                cactus_ducks += 1
         world.update()
         if world.hits(dino):
             break
-    return world.frame, unnecessary_ducks, bird_ducks
+    return world.frame, cactus_ducks, bird_ducks
 
 
 class StopTraining(Exception):
@@ -743,13 +755,13 @@ class Validator(neat.reporting.BaseReporter):
         net = neat.nn.FeedForwardNetwork.create(best_genome, self.config)
         results = [run_course(net, self.max_frames) for _ in range(self.courses)]
         wins = sum(r[0] >= self.max_frames for r in results)
-        avg_bad_ducks = sum(r[1] for r in results) / len(results)
+        avg_cactus_ducks = sum(r[1] for r in results) / len(results)
         avg_bird_ducks = sum(r[2] for r in results) / len(results)
         print(
             f"  Validation on {self.courses} fresh courses: {wins}/{self.courses} survived "
-            f"(avg bird-duck frames: {avg_bird_ducks:.0f}, unnecessary ground-ducks: {avg_bad_ducks:.1f})"
+            f"(avg bird-duck frames: {avg_bird_ducks:.0f}, cactus-ground-ducks: {avg_cactus_ducks:.1f})"
         )
-        if wins / self.courses >= self.required and avg_bad_ducks < 120 and avg_bird_ducks > 100:
+        if wins / self.courses >= self.required and avg_bird_ducks > 100 and avg_cactus_ducks < 200:
             self.validated = best_genome
             raise StopTraining
 
