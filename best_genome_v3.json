@@ -1,0 +1,104 @@
+{
+  "version": "3.0",
+  "fitness": 1212.3333333329722,
+  "input_keys": [
+    -1,
+    -2,
+    -3,
+    -4,
+    -5,
+    -6,
+    -7
+  ],
+  "output_keys": [
+    0,
+    1
+  ],
+  "input_scale": 3.0,
+  "jump_threshold": 0.5,
+  "duck_threshold": 0.5,
+  "nodes": {
+    "0": {
+      "bias": -0.34174193233590927,
+      "response": 1.0,
+      "activation": "tanh",
+      "aggregation": "sum"
+    },
+    "1": {
+      "bias": -3.997160781830055,
+      "response": 1.0,
+      "activation": "tanh",
+      "aggregation": "sum"
+    },
+    "23": {
+      "bias": -0.25914543705098064,
+      "response": 1.0,
+      "activation": "tanh",
+      "aggregation": "sum"
+    },
+    "709": {
+      "bias": 2.6253476867347834,
+      "response": 1.0,
+      "activation": "tanh",
+      "aggregation": "sum"
+    },
+    "859": {
+      "bias": -1.0057110217508778,
+      "response": 1.0,
+      "activation": "tanh",
+      "aggregation": "sum"
+    }
+  },
+  "connections": [
+    {
+      "in": 859,
+      "out": 0,
+      "weight": 1.8491844723642334
+    },
+    {
+      "in": -5,
+      "out": 23,
+      "weight": -1.5396387975126429
+    },
+    {
+      "in": -1,
+      "out": 23,
+      "weight": 6.045701496329264
+    },
+    {
+      "in": -7,
+      "out": 23,
+      "weight": 0.6430746016956168
+    },
+    {
+      "in": -7,
+      "out": 859,
+      "weight": 2.0568508114018247
+    },
+    {
+      "in": 859,
+      "out": 1,
+      "weight": 1.6341235271811603
+    },
+    {
+      "in": -3,
+      "out": 1,
+      "weight": 5.151755849244808
+    },
+    {
+      "in": 23,
+      "out": 0,
+      "weight": -5.614223737289947
+    },
+    {
+      "in": -1,
+      "out": 709,
+      "weight": 3.226699035128351
+    },
+    {
+      "in": 23,
+      "out": 1,
+      "weight": -1.7152682317799508
+    }
+  ]
+}
